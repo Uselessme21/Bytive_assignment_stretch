@@ -7,7 +7,7 @@ const swaggerDefinition = {
     },
     servers: [
       {
-        url: 'http://localhost:8090',
+        url: 'https://bytive-qvhh.onrender.com',
         description: 'API',
       },
     ],
