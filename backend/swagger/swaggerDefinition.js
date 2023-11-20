@@ -7,7 +7,7 @@ const swaggerDefinition = {
     },
     servers: [
       {
-        url: 'https://bytive-qvhh.onrender.com',
+        url: 'https://bytive-assignment-stretch-git-main-uselessme21s-projects.vercel.app',
         description: 'API',
       },
     ],
