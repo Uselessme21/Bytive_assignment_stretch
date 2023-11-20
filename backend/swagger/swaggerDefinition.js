@@ -1,14 +1,14 @@
 const swaggerDefinition = {
     openapi: '3.0.0',
     info: {
-      title: 'Bytive',
+      title: 'Bytive Assignment',
       version: '1.0.0',
-      description: 'user search',
+      description: 'Api to search the users on the basis of there tech skills and create your own profile and update to get noticed by other peoples.',
     },
     servers: [
       {
         url: 'http://localhost:8090',
-        description: 'Local development server',
+        description: 'API',
       },
     ],
   };
