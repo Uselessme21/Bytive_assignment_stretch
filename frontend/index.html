@@ -56,7 +56,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">
-        <img src=../resources/Api-screenshots/full_swagger.png" width="30"
+        <img src=../resources/Api-screenshots" width="30"
         height="30" class="d-inline-block align-top" alt="Your Logo">
       </a>
 
@@ -210,11 +210,7 @@
                 <p><strong>Tech Stack:</strong> ${user.techStack.join(", ")}</p>
             </div>
             <div class="card-buttons">
-                <button class="btn btn-danger" onclick="deleteUser('${
-                  user._id
-                }')">Delete</button>
-               
-                <button class="btn btn-success" onclick="editProfile('${
+                <button class="btn btn-success" onclick="viewProfile('${
                   user._id
                 }')">View Profile</button>
             </div>
@@ -226,37 +222,7 @@
         });
       }
 
-    
-      function deleteUser(userId){
-          if (!token) {
-          alert("You are not logged in");
-          return;
-        }
-
-        const headers = new Headers();
-        headers.append("Authorization", `${token}`);
-
-        fetch(
-          `https://bytive-assignment-stretch-frn4.vercel.app/api/user/deleteprofile/${userId}`,
-          {
-            method: "DELETE",
-            headers: headers,
-          }
-        )
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(`${userId} `, data);
-            alert(data.message);
-          })
-          .catch((error) => {
-            console.error("Error deleting user:", error);
-          });
-      }
-
-      // Function to edit profile (show a popup or navigate to an edit page)
-      function editProfile(userId) {
+      function viewProfile(userId) {
         window.location.href=`./pages/edit_profile.html?userId=${userId}`;
       }
 
