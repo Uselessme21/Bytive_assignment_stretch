@@ -11,7 +11,7 @@ AllRoutes.get('/getusers',getListOfProfiles);
 // working
 AllRoutes.get('/searchusers/',searchProfiles);
 
-AllRoutes.put('/updateusers',editProfile);
+AllRoutes.put('/updateusers', editProfile);
 // Stretch goals
 // working
 AllRoutes.post('/user/register',registerUser);
@@ -25,7 +25,8 @@ AllRoutes.use(verifyUserMiddleware)
 AllRoutes.put('/user/editprofile/:userId', editUserProfile);
 // working
 AllRoutes.get('/user/userprofile/:userId' , UserAccount);
-AllRoutes.delete('/user/deleteprofile/:userId' ,deleteUserAccount);
+// working
+AllRoutes.delete('/user/deleteprofile/:userId' , deleteUserAccount);
 
 AllRoutes.get('/user/logout' , logoutUser);
 

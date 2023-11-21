@@ -236,6 +236,41 @@
 
   $(document).ready(function () {
     // Toggle between Register and Login form
+    function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to fetch user information based on user ID
+        function fetchUserInfo(userId) {
+            // Make an API request to get user information
+            // Replace the URL with your actual API endpoint
+            const headers = new Headers();
+             headers.append("Authorization", `${token}`);
+            fetch(`https://bytive-assignment-stretch-frn4.vercel.app/api/user/userprofile/${userId}`,
+            {
+            headers: headers,
+             })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the user data, for example, update the UI
+                    console.log('User information:', data);
+                })
+                .catch(error => {
+                    console.error('Error fetching user information:', error);
+                });
+        }
+
+        // Get the userId from the query parameters
+        const userId = getQueryParam('userId');
+
+        if (userId) {
+            // Fetch user information if userId is present
+            fetchUserInfo(userId);
+        } else {
+            console.error('User ID not found in the query parameters');
+        }
+
 
     $("#registerForm").submit(function (event) {
       event.preventDefault();
@@ -274,11 +309,11 @@
         websiteURL,
       };
 console.log(formdata)
-      // registerUser(formdata);
+      // updateUser(formdata);
     });
 
     // Function to register the user
-    function registerUser(formData) {
+    function updateUser(formData) {
       console.log(formData);
       $.ajax({
         url: "http://localhost:8090/api/user/register",
