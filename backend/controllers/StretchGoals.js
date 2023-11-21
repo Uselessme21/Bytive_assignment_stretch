@@ -194,6 +194,7 @@ const editUserProfile = async (req, res) => {
   try {
     const {
       name,
+      gravatar,
       location,
       fieldOfInterest,
       techStack,
@@ -215,6 +216,7 @@ const editUserProfile = async (req, res) => {
     // Update user profile
     await User.findByIdAndUpdate(req.params.userId, {
       name,
+      gravatar,
       location,
       fieldOfInterest,
       techStack,

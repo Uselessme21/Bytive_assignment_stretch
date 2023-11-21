@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <!-- style links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <style>
+          .card {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .card-img {
+            
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        .card-details {
+            flex: 1; 
+            padding: 1rem;
+        }
+
+        .card-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            gap: 9px;
+            justify-items: center;
+            margin: auto;
+
+        }
+        .btn{
+            height: min-content;
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="your-logo.png" width="30" height="30" class="d-inline-block align-top" alt="Your Logo">
+        </a>
+    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Browse Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logoutBtn" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="searchName" class="form-label">Search by Name:</label>
+                    <input type="text" class="form-control" id="searchName" placeholder="Enter name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="searchTechStack" class="form-label">Search by Tech Stack:</label>
+                    <input type="text" class="form-control" id="searchTechStack" placeholder="Enter tech stack">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="searchBio" class="form-label">Search by Bio:</label>
+                    <input type="text" class="form-control" id="searchBio" placeholder="Enter bio">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary" onclick="searchProfiles()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- new section -->
+   <!-- Section for rendering user profiles -->
+<section class="container mt-lg-auto" id="userProfilesSection">
+    <!-- Profiles will be dynamically rendered here -->
+</section>
+
+    <script>
+        // Check if the token is in the localStorage
+        const token = localStorage.getItem('yourToken');
+    
+        if (token) {
+          
+            document.getElementById('logoutBtn').textContent = 'Logout';
+        } else {
+           
+            document.getElementById('logoutBtn').textContent = 'Login';
+        }
+
+        function searchProfiles() {
+        const name = document.getElementById('searchName').value;
+        const techStack = document.getElementById('searchTechStack').value;
+        const bio = document.getElementById('searchBio').value;
+
+        // Construct the API URL with query parameters
+        const apiUrl = `https://bytive-assignment-stretch-frn4.vercel.app/api/searchusers?name=${name}&techStack=${techStack}&bio=${bio}`;
+
+        // Fetch data from the API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the data as needed (e.g., display results on the page)
+                console.log(data);
+                renderUserProfiles(data)
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+
+
+    // page load
+
+       // Function to fetch user profiles from the API and render them
+    function fetchAndRenderUserProfiles() {
+        const apiUrl = 'https://bytive-assignment-stretch-frn4.vercel.app/api/getusers';
+
+        // Fetch data from the API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => renderUserProfiles(data))
+            .catch(error => console.error('Error fetching user profiles:', error));
+    }
+
+    // Function to render user profiles dynamically
+    function renderUserProfiles(userProfiles) {
+        const userProfilesSection = document.getElementById('userProfilesSection');
+
+        // Clear any existing content
+        userProfilesSection.innerHTML = '';
+
+        // Iterate through each user profile and create a card for each
+        userProfiles.forEach(user => {
+            const cardHtml = `
+            <div class="col-md-12">
+        <div class="card mb-lg-5">
+            <img src="https://vistapointe.net/images/human-2.jpg" class="card-img" alt="Gravatar Image">
+            <div class="card-details">
+                <h5 class="card-title">${user.name}</h5>
+                <p><strong>Field of Interest:</strong> ${user.fieldOfInterest.join(', ')}</p>
+                <p><strong>Tech Stack:</strong> ${user.techStack.join(', ')}</p>
+            </div>
+            <div class="card-buttons">
+                <button class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
+                <button class="btn btn-primary" onclick="dmStudent('${user._id}')">DM Student</button>
+                <button class="btn btn-success" onclick="editProfile('${user._id}')">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+            `;
+
+            userProfilesSection.innerHTML += cardHtml;
+        });
+    }
+
+    // Function to delete a user
+    function deleteUser(userId) {
+        
+        console.log(`Deleting user with ID: ${userId}`);
+    }
+
+    // Function to DM a student
+    function dmStudent(userId) {
+       
+        console.log(`Sending a direct message to student with ID: ${userId}`);
+    }
+
+    // Function to edit profile (show a popup or navigate to an edit page)
+    function editProfile(userId) {
+       
+        console.log(`Editing profile for user with ID: ${userId}`);
+    }
+
+    // Fetch and render user profiles on page load
+    document.addEventListener('DOMContentLoaded', fetchAndRenderUserProfiles);
+    </script>
+</body>
+</html>
