@@ -40,7 +40,7 @@ Here are some screenshots demonstrating the usage of the API.
 
 To get started with the Bytive API, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/bytive-backend.git`
+1. Clone the repository: `git clone https://github.com.git`
 2. Install dependencies: `npm install`
 3. Configure environment variables: Create a `.env` file and configure the necessary variables (e.g., database connection, secret keys).
 
