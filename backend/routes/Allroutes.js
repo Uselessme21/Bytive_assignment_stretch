@@ -18,7 +18,9 @@ AllRoutes.post('/user/register',registerUser);
 // working
 AllRoutes.post('/user/login',loginUser);
 // protected routes
+
 AllRoutes.use(verifyUserMiddleware)
+
 // working
 AllRoutes.put('/user/editprofile/:userId', editUserProfile);
 // working

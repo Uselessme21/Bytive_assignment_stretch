@@ -37,7 +37,20 @@ const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { 
+      name, 
+      email, 
+      password,
+      gravatar,
+      location,
+      fieldOfInterest,
+      techStack,
+      seeking,
+      bio,
+      githubURL,
+      twitterURL,
+      websiteURL,
+      linkedinURL, } = req.body;
 
     // Check if user with the given email already exists
     if (!email || !name || !password) {
@@ -58,20 +71,29 @@ const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      // Add other fields as needed
+      gravatar,
+      location,
+      fieldOfInterest,
+      techStack,
+      seeking,
+      bio,
+      githubURL,
+      twitterURL,
+      websiteURL,
+      linkedinURL,
+      
     });
 
-    // Save the user to the database
+    
     await newUser.save();
 
-    // Generate a JWT token
     const token = jwt.sign({ userId: newUser._id }, process.env.jwtkey, {
       expiresIn: "1h",
     });
 
     res
       .status(201)
-      .json({ message: "User registered successfully", user: newUser, token });
+      .json({ message: "User registered successfully", token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -131,7 +153,7 @@ const loginUser = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ message: "Login successful", user, token });
+    res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

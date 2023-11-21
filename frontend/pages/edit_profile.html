@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home page</title>
+    <!-- style links -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <style></style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src="your-logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt="Your Logo"
+        />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Browse Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Edit Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="logoutBtn" href="#">Logout</a>
+        </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+             
+              <div id="registerFields">
+                <form id="registerForm">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      required
+                    />
+                  </div>
+                 
+
+                  <div class="mb-3">
+                    <label for="techStack" class="form-label">Tech Stack</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="techStack"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="fieldOfInterest" class="form-label"
+                      >Field of Interest</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="fieldOfInterest"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="seeking" class="form-label">Seeking</label>
+                    <select class="form-select" id="seeking" required>
+                      <option value="internship">Internship</option>
+                      <option value="job">Job</option>
+                      <!-- Add more options if needed -->
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="gravatar" class="form-label"
+                      >Gravatar URL</label
+                    >
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="gravatar"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea
+                      class="form-control"
+                      id="bio"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="githubURL" class="form-label">GitHub URL</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="githubURL"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="linkedinURL" class="form-label"
+                      >LinkedIn URL</label
+                    >
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="linkedinURL"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="location"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="twitterURL" class="form-label"
+                      >Twitter URL</label
+                    >
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="twitterURL"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="websiteURL" class="form-label"
+                      >Website URL</label
+                    >
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="websiteURL"
+                      required
+                    />
+                  </div>
+
+                  <!-- Add other fields for registration -->
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+
+
+const token = localStorage.getItem('token');
+        let logoutbtn=document.getElementById('logoutBtn')
+        if (token) {
+            logoutbtn.textContent = 'Logout';
+            
+        } else {
+            logoutbtn.textContent = 'Login';
+        }
+
+        logoutbtn.addEventListener('click',()=>{
+            if(logoutbtn.textContent==="Logout"){
+                localStorage.removeItem('token')
+                alert('logout successfully')
+                logoutbtn.textContent = 'Login';
+            }else{
+            logoutbtn.setAttribute('href','./pages/signup-signin.html')
+            }
+           
+        })
+
+  $(document).ready(function () {
+    // Toggle between Register and Login form
+   
+
+    
+
+
+    $("#registerForm").submit(function (event) {
+      event.preventDefault();
+      // Get all form values as an array of objects
+      // Get values using individual ids
+      var name = $("#name").val();
+      var email = $("#email").val();
+      var password = $("#password").val();
+      var confirmPassword = $("#confirmPassword").val();
+      var techStack = $("#techStack").val();
+      var fieldOfInterest = $("#fieldOfInterest").val();
+      var seeking = $("#seeking").val();
+      var gravatar = $("#gravatar").val();
+      var bio = $("#bio").val();
+      var githubURL = $("#githubURL").val();
+      var linkedinURL = $("#linkedinURL").val();
+      var location = $("#location").val();
+      var twitterURL = $("#twitterURL").val();
+      var websiteURL = $("#websiteURL").val();
+      if(password!==confirmPassword){
+        alert("password is not same")
+      }
+      formdata={
+        name,
+        email,
+        password,
+        techStack,
+        fieldOfInterest,
+        seeking,
+        gravatar,
+        bio,
+        githubURL,
+        linkedinURL,
+        location,
+        twitterURL,
+        websiteURL,
+      };
+
+registerUser(formdata)
+
+    });
+
+
+   
+  // Function to register the user
+function registerUser(formData) {
+  console.log(formData);
+  $.ajax({
+    url: "http://localhost:8090/api/user/register",
+    type: "POST",
+    data: JSON.stringify(formData), // Stringify the data for JSON payload
+    contentType: 'application/json',
+    success: function (response) {
+      // Handle successful registration
+      console.log("Registration successful:", response);
+
+      // Save the token in local storage (if applicable)
+      localStorage.setItem('token', response.token);
+    },
+    error: function (error) {
+      // Handle registration error
+      console.error("Registration error:", error);
+    },
+  });
+}
+
+ 
+});
+</script>
