@@ -4,12 +4,14 @@ require('dotenv').config();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
+
+app.use(express.json());
+app.use(cors());
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const connection = require('./config/db');
 const AllRoutes = require('./routes/Allroutes');
 const swaggerOptions = require('./swagger/swaggerOptions');
-
 
 
 // Swagger Documentation
