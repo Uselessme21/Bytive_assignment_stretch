@@ -59,7 +59,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="logoutBtn" href="#">Logout</a>
-        </li>
+          </li>
         </ul>
       </div>
     </nav>
@@ -69,7 +69,6 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-             
               <div id="registerFields">
                 <form id="registerForm">
                   <div class="mb-3">
@@ -81,36 +80,51 @@
                       required
                     />
                   </div>
-                 
 
                   <div class="mb-3">
                     <label for="techStack" class="form-label">Tech Stack</label>
-                    <input
-                      type="text"
+                    <select
+                      name=""
                       class="form-control"
                       id="techStack"
-                      required
-                    />
+                      multiple
+                    >
+                    <option value="HTML/CSS">HTML/CSS</option>
+                      <option value="javascript">JavaScript</option>
+                      <option value="node.js">node.js</option>
+                      <option value="php">PHP</option>
+                      <option value="java">Java</option>
+                      <option value="golang">Golang</option>
+                      <option value="python">Python</option>
+                      <option value="c#">C#</option>
+                      <option value="C++">C++</option>
+                      <option value="erlang">Erlang</option>
+                    </select>
                   </div>
 
                   <div class="mb-3">
                     <label for="fieldOfInterest" class="form-label"
                       >Field of Interest</label
                     >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fieldOfInterest"
-                      required
-                    />
+                    
+                    <select name="" class="form-control" id="fieldOfInterest" multiple>
+                      <option value="Full Stack developer">Full Stack developer</option>
+                      <option value="Data Scientist">Data scientist</option>
+                      <option value="Backend Developer">Backend Developer</option>
+                      <option value="Frontend Developer">Frontend Developer</option>
+                      <option value="Power BI">Power BI</option>
+                      <option value="AI ML">AI ML</option>
+                    </select>
                   </div>
 
                   <div class="mb-3">
                     <label for="seeking" class="form-label">Seeking</label>
-                    <select class="form-select" id="seeking" required>
-                      <option value="internship">Internship</option>
-                      <option value="job">Job</option>
-                      <!-- Add more options if needed -->
+                    <select class="form-select" id="seeking" multiple>
+                      <option value="Internship">Internship</option>
+                      <option value="Job">Job</option>
+                      <option value="Remote">Remote</option>
+                      <option value="Work from Home">Work from Home</option>
+                    
                     </select>
                   </div>
 
@@ -191,9 +205,6 @@
                       required
                     />
                   </div>
-
-                  <!-- Add other fields for registration -->
-
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
@@ -205,34 +216,26 @@
   </body>
 </html>
 <script>
+  const token = localStorage.getItem("token");
+  let logoutbtn = document.getElementById("logoutBtn");
+  if (token) {
+    logoutbtn.textContent = "Logout";
+  } else {
+    logoutbtn.textContent = "Login";
+  }
 
-
-const token = localStorage.getItem('token');
-        let logoutbtn=document.getElementById('logoutBtn')
-        if (token) {
-            logoutbtn.textContent = 'Logout';
-            
-        } else {
-            logoutbtn.textContent = 'Login';
-        }
-
-        logoutbtn.addEventListener('click',()=>{
-            if(logoutbtn.textContent==="Logout"){
-                localStorage.removeItem('token')
-                alert('logout successfully')
-                logoutbtn.textContent = 'Login';
-            }else{
-            logoutbtn.setAttribute('href','./pages/signup-signin.html')
-            }
-           
-        })
+  logoutbtn.addEventListener("click", () => {
+    if (logoutbtn.textContent === "Logout") {
+      localStorage.removeItem("token");
+      alert("logout successfully");
+      logoutbtn.textContent = "Login";
+    } else {
+      logoutbtn.setAttribute("href", "./signup-signin.html");
+    }
+  });
 
   $(document).ready(function () {
     // Toggle between Register and Login form
-   
-
-    
-
 
     $("#registerForm").submit(function (event) {
       event.preventDefault();
@@ -252,10 +255,10 @@ const token = localStorage.getItem('token');
       var location = $("#location").val();
       var twitterURL = $("#twitterURL").val();
       var websiteURL = $("#websiteURL").val();
-      if(password!==confirmPassword){
-        alert("password is not same")
+      if (password !== confirmPassword) {
+        alert("password is not same");
       }
-      formdata={
+      formdata = {
         name,
         email,
         password,
@@ -270,35 +273,30 @@ const token = localStorage.getItem('token');
         twitterURL,
         websiteURL,
       };
-
-registerUser(formdata)
-
+console.log(formdata)
+      // registerUser(formdata);
     });
 
+    // Function to register the user
+    function registerUser(formData) {
+      console.log(formData);
+      $.ajax({
+        url: "http://localhost:8090/api/user/register",
+        type: "POST",
+        data: JSON.stringify(formData), // Stringify the data for JSON payload
+        contentType: "application/json",
+        success: function (response) {
+          // Handle successful registration
+          console.log("Registration successful:", response);
 
-   
-  // Function to register the user
-function registerUser(formData) {
-  console.log(formData);
-  $.ajax({
-    url: "http://localhost:8090/api/user/register",
-    type: "POST",
-    data: JSON.stringify(formData), // Stringify the data for JSON payload
-    contentType: 'application/json',
-    success: function (response) {
-      // Handle successful registration
-      console.log("Registration successful:", response);
-
-      // Save the token in local storage (if applicable)
-      localStorage.setItem('token', response.token);
-    },
-    error: function (error) {
-      // Handle registration error
-      console.error("Registration error:", error);
-    },
+          // Save the token in local storage (if applicable)
+          localStorage.setItem("token", response.token);
+        },
+        error: function (error) {
+          // Handle registration error
+          console.error("Registration error:", error);
+        },
+      });
+    }
   });
-}
-
- 
-});
 </script>

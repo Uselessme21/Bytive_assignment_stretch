@@ -310,6 +310,46 @@ const deleteUserAccount = async (req, res) => {
   }
 };
 
+
+/**
+ * @swagger
+ * /api/user/userprofile/{userId}:
+ *   get:
+ *     summary: Get single user account
+ *     description: get the account of the logged-in user.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user whose account is being deleted.
+ *     responses:
+ *       200:
+ *         description: userProfile send
+ *         content:
+ *           application/json:
+ *             example: {"message": "Your Profile"}
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             example: {"message": "Internal server error"}
+ */
+const UserAccount = async (req, res) => {
+  try {
+   
+    // single user account
+   const yourprofile= await User.find(req.params.userId);
+
+    res.status(200).json({ yourprofile });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 /**
  * @swagger
  * /api/user/logout:
@@ -336,5 +376,6 @@ module.exports = {
   loginUser,
   editUserProfile,
   deleteUserAccount,
+  UserAccount,
   logoutUser,
 };

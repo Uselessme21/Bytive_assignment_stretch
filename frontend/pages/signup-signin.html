@@ -55,7 +55,7 @@
             <a class="nav-link" href="../index.html">Browse Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Edit Profile</a>
+            <a class="nav-link" href="./edit_profile.html">Edit profile</a>
           </li>
         </ul>
       </div>
@@ -127,47 +127,53 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="confirmPassword" class="form-label"
-                      >Confirm Password</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="confirmPassword"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
                     <label for="techStack" class="form-label">Tech Stack</label>
-                    <input
-                      type="text"
+                    <select
+                      name=""
                       class="form-control"
                       id="techStack"
-                      required
-                    />
+                      multiple
+                    >
+                    <option value="HTML/CSS">HTML/CSS</option>
+                      <option value="javascript">JavaScript</option>
+                      <option value="node.js">node.js</option>
+                      <option value="php">PHP</option>
+                      <option value="java">Java</option>
+                      <option value="golang">Golang</option>
+                      <option value="python">Python</option>
+                      <option value="c#">C#</option>
+                      <option value="C++">C++</option>
+                      <option value="erlang">Erlang</option>
+                    </select>
                   </div>
 
                   <div class="mb-3">
                     <label for="fieldOfInterest" class="form-label"
                       >Field of Interest</label
                     >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fieldOfInterest"
-                      required
-                    />
+                    
+                    <select name="" class="form-control" id="fieldOfInterest" multiple>
+                      <option value="Full Stack developer">Full Stack developer</option>
+                      <option value="Data Scientist">Data scientist</option>
+                      <option value="Backend Developer">Backend Developer</option>
+                      <option value="Frontend Developer">Frontend Developer</option>
+                      <option value="Power BI">Power BI</option>
+                      <option value="AI ML">AI ML</option>
+                    </select>
                   </div>
 
                   <div class="mb-3">
                     <label for="seeking" class="form-label">Seeking</label>
-                    <select class="form-select" id="seeking" required>
-                      <option value="internship">Internship</option>
-                      <option value="job">Job</option>
-                      <!-- Add more options if needed -->
+                    <select class="form-select" id="seeking" multiple>
+                      <option value="Internship">Internship</option>
+                      <option value="Job">Job</option>
+                      <option value="Remote">Remote</option>
+                      <option value="Work from Home">Work from Home</option>
+                    
                     </select>
                   </div>
+
+                  
 
                   <div class="mb-3">
                     <label for="gravatar" class="form-label"
@@ -291,7 +297,7 @@
       var name = $("#name").val();
       var email = $("#email").val();
       var password = $("#password").val();
-      var confirmPassword = $("#confirmPassword").val();
+     
       var techStack = $("#techStack").val();
       var fieldOfInterest = $("#fieldOfInterest").val();
       var seeking = $("#seeking").val();
@@ -302,9 +308,6 @@
       var location = $("#location").val();
       var twitterURL = $("#twitterURL").val();
       var websiteURL = $("#websiteURL").val();
-      if(password!==confirmPassword){
-        alert("password is not same")
-      }
       formdata={
         name,
         email,
@@ -331,7 +334,7 @@ registerUser(formdata)
 function registerUser(formData) {
   console.log(formData);
   $.ajax({
-    url: "http://localhost:8090/api/user/register",
+    url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/register",
     type: "POST",
     data: JSON.stringify(formData), // Stringify the data for JSON payload
     contentType: 'application/json',
@@ -353,7 +356,7 @@ function registerUser(formData) {
   function loginUser(formData) {
     console.log(formData);
     $.ajax({
-      url: "http://localhost:8090/api/user/login",
+      url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/login",
       type: "POST",
       data: JSON.stringify(formData), // Stringify the data for JSON payload
     contentType: 'application/json',

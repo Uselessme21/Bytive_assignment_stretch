@@ -2,7 +2,7 @@ const AllRoutes=require('express').Router()
 
 const {getListOfProfiles,searchProfiles,editProfile} =require("../controllers/ReqUserFeatures");
 
-const { registerUser, loginUser, editUserProfile, deleteUserAccount, logoutUser } =require("../controllers/StretchGoals");
+const { registerUser, loginUser, editUserProfile, deleteUserAccount,UserAccount, logoutUser } =require("../controllers/StretchGoals");
 const verifyUserMiddleware=require("../middleware/verifyUser")
 
 // require functionalities
@@ -24,9 +24,10 @@ AllRoutes.use(verifyUserMiddleware)
 // working
 AllRoutes.put('/user/editprofile/:userId', editUserProfile);
 // working
+AllRoutes.get('/user/userprofile/:userId' , UserAccount);
 AllRoutes.delete('/user/deleteprofile/:userId' ,deleteUserAccount);
 
-AllRoutes.get('/user/logout' ,logoutUser);
+AllRoutes.get('/user/logout' , logoutUser);
 
 
 
