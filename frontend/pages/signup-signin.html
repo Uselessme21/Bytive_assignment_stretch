@@ -267,7 +267,7 @@
 </html>
 <script>
   $(document).ready(function () {
-    // Toggle between Register and Login form
+
     $("#toggleForm").click(function () {
       $("#registerFields").toggle();
       $("#authForm").toggle();
@@ -292,12 +292,9 @@
 
     $("#registerForm").submit(function (event) {
       event.preventDefault();
-      // Get all form values as an array of objects
-      // Get values using individual ids
       var name = $("#name").val();
       var email = $("#email").val();
       var password = $("#password").val();
-     
       var techStack = $("#techStack").val();
       var fieldOfInterest = $("#fieldOfInterest").val();
       var seeking = $("#seeking").val();
@@ -308,6 +305,7 @@
       var location = $("#location").val();
       var twitterURL = $("#twitterURL").val();
       var websiteURL = $("#websiteURL").val();
+      
       formdata={
         name,
         email,
@@ -324,7 +322,7 @@
         websiteURL,
       };
 
-registerUser(formdata)
+      registerUser(formdata)
 
     });
 
@@ -336,18 +334,14 @@ function registerUser(formData) {
   $.ajax({
     url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/register",
     type: "POST",
-    data: JSON.stringify(formData), // Stringify the data for JSON payload
+    data: JSON.stringify(formData), 
     contentType: 'application/json',
     success: function (response) {
-      // Handle successful registration
       console.log("Registration successful:", response);
-
-      // Save the token in local storage (if applicable)
       localStorage.setItem('token', response.token);
     },
     error: function (error) {
-      // Handle registration error
-      console.error("Registration error:", error);
+      console.log("Registration error:", error);
     },
   });
 }
@@ -358,12 +352,10 @@ function registerUser(formData) {
     $.ajax({
       url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/login",
       type: "POST",
-      data: JSON.stringify(formData), // Stringify the data for JSON payload
+      data: JSON.stringify(formData), 
     contentType: 'application/json',
       success: function (response) {
-        // Handle successful login
         console.log( response.message);
-        // Save the token in local storage (if applicable)
         alert(response.message)
         if(response.message==="Login successful"){
           window.location.href='../index.html';
@@ -371,7 +363,6 @@ function registerUser(formData) {
         localStorage.setItem('token', response.token);
       },
       error: function (error) {
-        // Handle login error
         console.error("Login error:", error);
       },
     });

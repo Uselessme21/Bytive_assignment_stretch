@@ -70,7 +70,7 @@
           <div class="card">
             <div class="card-body">
               <div id="registerFields">
-                <form id="registerForm">
+                <form id="updateForm">
                   <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input
@@ -254,7 +254,7 @@
                 .then(response => response.json())
                 .then(data => {
                     // Handle the user data, for example, update the UI
-                    console.log('User information:', data);
+                    console.log('User information:', data.message);
                 })
                 .catch(error => {
                     console.error('Error fetching user information:', error);
@@ -268,11 +268,11 @@
             // Fetch user information if userId is present
             fetchUserInfo(userId);
         } else {
-            console.error('User ID not found in the query parameters');
+            console.log('User ID not found in the query parameters');
         }
 
 
-    $("#registerForm").submit(function (event) {
+    $("#updaterForm").submit(function (event) {
       event.preventDefault();
       // Get all form values as an array of objects
       // Get values using individual ids

@@ -343,9 +343,9 @@ const UserAccount = async (req, res) => {
     const {userId}=req.params
     console.log(userId)
     // single user account
-   const yourprofile= await User.find({_id:userId});
+   const user= await User.find({_id:userId});
 
-    res.status(200).json({ yourprofile });
+    res.status(200).json({message:"user fetched" , user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
