@@ -340,9 +340,10 @@ const deleteUserAccount = async (req, res) => {
  */
 const UserAccount = async (req, res) => {
   try {
-   
+    const {userId}=req.params
+    console.log(userId)
     // single user account
-   const yourprofile= await User.find(req.params.userId);
+   const yourprofile= await User.find({_id:userId});
 
     res.status(200).json({ yourprofile });
   } catch (error) {

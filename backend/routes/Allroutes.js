@@ -31,5 +31,4 @@ AllRoutes.delete('/user/deleteprofile/:userId' , deleteUserAccount);
 AllRoutes.get('/user/logout' , logoutUser);
 
 
-
 module.exports=AllRoutes
