@@ -2,39 +2,6 @@ const User = require("../model/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// Controller for user registration
-/**
- * @swagger
- * /api/user/register:
- *   post:
- *     summary: Register a new user
- *     description: Register a new user with a unique email.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           example:
- *             name: John Doe
- *             email: john@example.com
- *             password: password123
- *     responses:
- *       201:
- *         description: User registered successfully
- *         content:
- *           application/json:
- *             example: {"message": "User registered successfully", "profile": "_id", "token": "your-jwt-token"}
- *       400:
- *         description: Bad Request
- *         content:
- *           application/json:
- *             example: {"message": "provide all the required input"}
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example: {"message": "Internal server error"}
- */
-
 const registerUser = async (req, res) => {
   try {
     const { 
@@ -102,36 +69,6 @@ const registerUser = async (req, res) => {
 
 // Controller for user login
 
-/**
- * @swagger
- * /api/user/login:
- *   post:
- *     summary: Log in an existing user
- *     description: Log in an existing user with a valid email and password.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           example:
- *             email: john@example.com
- *             password: password123
- *     responses:
- *       200:
- *         description: Login successful
- *         content:
- *           application/json:
- *             example: {"message": "Login successful", "profile": "_id", "token": "your-jwt-token"}
- *       401:
- *         description: Unauthorized
- *         content:
- *           application/json:
- *             example: {"message": "Invalid email or password"}
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example: {"message": "Internal server error"}
- */
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -162,55 +99,6 @@ const loginUser = async (req, res) => {
 
 // Controller for user profile editing
 
-/**
- * @swagger
- * /api/user/editprofile/{userId}:
- *   put:
- *     summary: Edit user profile
- *     description: Edit the profile of the logged-in user.
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: userId
- *         schema:
- *           type: string
- *         required: true
- *         description: The ID of the user whose profile is being edited.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           example: 
- *             {
- *               "name": "John",
- *               "techStack": ["JavaScript"],
- *               "fieldOfInterest": ["Web Developer"],
- *               "seeking": ["Internship", "Job"],
- *               "bio": "I am a prompt engineer with 5 years of experience",
- *               "githubURL": "https://github.com/user",
- *               "linkedinURL": "https://www.linkedin.com/in/user/",
- *               "location": "User Location",
- *               "twitterURL": "https://twitter.com/user",
- *               "websiteURL": "https://user.github.io/"
- *             }
- *     responses:
- *       200:
- *         description: Profile updated successfully
- *         content:
- *           application/json:
- *             example: {"message": "Profile updated successfully"}
- *       403:
- *         description: Forbidden
- *         content:
- *           application/json:
- *             example: {"message": "You are not authorized to edit this profile"}
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example: {"message": "Internal server error"}
- */
 
 const editUserProfile = async (req, res) => {
   try {
@@ -259,38 +147,7 @@ const editUserProfile = async (req, res) => {
 
 // Controller for user account deletion
 
-/**
- * @swagger
- * /api/user/deleteprofile/{userId}:
- *   delete:
- *     summary: Delete user account
- *     description: Delete the account of the logged-in user.
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: userId
- *         schema:
- *           type: string
- *         required: true
- *         description: The ID of the user whose account is being deleted.
- *     responses:
- *       200:
- *         description: Account deleted successfully
- *         content:
- *           application/json:
- *             example: {"message": "Account deleted successfully"}
- *       403:
- *         description: Forbidden
- *         content:
- *           application/json:
- *             example: {"message": "You are not authorized to delete this account"}
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example: {"message": "Internal server error"}
- */
+
 const deleteUserAccount = async (req, res) => {
   try {
     // Check if the logged-in user is the owner of the account
@@ -311,33 +168,6 @@ const deleteUserAccount = async (req, res) => {
 };
 
 
-/**
- * @swagger
- * /api/user/userprofile/{userId}:
- *   get:
- *     summary: Get single user account
- *     description: get the account of the logged-in user.
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: userId
- *         schema:
- *           type: string
- *         required: true
- *         description: The ID of the user whose account is being deleted.
- *     responses:
- *       200:
- *         description: userProfile send
- *         content:
- *           application/json:
- *             example: {"message": "Your Profile"}
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example: {"message": "Internal server error"}
- */
 const UserAccount = async (req, res) => {
   try {
     const {userId}=req.params
@@ -351,21 +181,7 @@ const UserAccount = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-/**
- * @swagger
- * /api/user/logout:
- *   get:
- *     summary: Log out user
- *     description: Log out the logged-in user. (No specific action needed for JWT)
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Logout successful
- *         content:
- *           application/json:
- *             example: {"message": "Logout successful"}
- */
+
 // Controller for user logout
 const logoutUser = (req, res) => {
   // No need for specific logout with JWT, as the client handles the token

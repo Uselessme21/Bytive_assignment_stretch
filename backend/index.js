@@ -8,18 +8,17 @@ app.use(cors());
 app.use(express.json());
 app.use(cors());
 const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
+
 const connection = require('./config/db');
 const AllRoutes = require('./routes/Allroutes');
-const swaggerOptions = require('./swagger/swaggerOptions');
 
+const swaggerDocument = require('./swagger/apiroute.json');
 
 // Swagger Documentation
-const specs = swaggerJsdoc(swaggerOptions);
-// and pass it down to your app.use where you have swagger api-docs
 
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { customCssUrl: CSS_URL }));
+// 
 
 app.get('/', (req, res) => {
   res.send('working');
