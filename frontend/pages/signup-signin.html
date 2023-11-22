@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home page</title>
+    <title>signup-signin</title>
     <!-- style links -->
     <link
       rel="stylesheet"
@@ -22,8 +22,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-
-    <style></style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,15 +63,14 @@
 
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="card">
-            <div class="card-header">
-              <button class="btn btn-primary" id="toggleForm">Register</button>
+            <div class="card-header col-12 justify-content-center">
+              <button class="btn btn-outline-primary col-6 justify-content-center" id="toggleForm">Register</button>
             </div>
             <div class="card-body">
               <form id="authForm">
-                <!-- Common Fields -->
-
+               
                 <div class="mb-3">
                   <label for="loginemail" class="form-label">Email</label>
                   <input
@@ -91,173 +90,105 @@
                   />
                 </div>
 
-                <button type="submit" id="loginSbmit" class="btn btn-primary">
+                <button type="submit" id="loginSbmit" class="btn btn-success col-12">
                   Submit
                 </button>
               </form>
-              <!-- Fields specific to Register Form -->
+          
               <div id="registerFields" style="display: none">
-                <form id="registerForm">
-                  <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      required
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      required
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      required
-                    />
-                  </div>
+                <form id="registerForm" class="row g-3 col-12">
+              
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" required />
+                    </div>
 
-                  <div class="mb-3">
-                    <label for="techStack" class="form-label">Tech Stack</label>
-                    <select
-                      name=""
-                      class="form-control"
-                      id="techStack"
-                      multiple
-                    >
-                    <option value="HTML/CSS">HTML/CSS</option>
-                      <option value="javascript">JavaScript</option>
-                      <option value="node.js">node.js</option>
-                      <option value="php">PHP</option>
-                      <option value="java">Java</option>
-                      <option value="golang">Golang</option>
-                      <option value="python">Python</option>
-                      <option value="c#">C#</option>
-                      <option value="C++">C++</option>
-                      <option value="erlang">Erlang</option>
-                    </select>
+                    <div class="mb-3">
+                      <label for="bio" class="form-label">Bio</label>
+                      <textarea class="form-control" id="bio" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="techStack" class="form-label">Tech Stack</label>
+                      <select name="" class="form-control" id="techStack" multiple>
+                        <option value="HTML/CSS">HTML/CSS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="node.js">node.js</option>
+                        <option value="php">PHP</option>
+                        <option value="java">Java</option>
+                        <option value="golang">Golang</option>
+                        <option value="python">Python</option>
+                        <option value="c#">C#</option>
+                        <option value="C++">C++</option>
+                        <option value="erlang">Erlang</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="fieldOfInterest" class="form-label">Field of Interest</label>
+                      <select name="" class="form-control" id="fieldOfInterest" multiple>
+                        <option value="Full Stack developer">Full Stack developer</option>
+                        <option value="Data Scientist">Data scientist</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Power BI">Power BI</option>
+                        <option value="AI ML">AI ML</option>
+                      </select>
+                    </div>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="fieldOfInterest" class="form-label"
-                      >Field of Interest</label
-                    >
-                    
-                    <select name="" class="form-control" id="fieldOfInterest" multiple>
-                      <option value="Full Stack developer">Full Stack developer</option>
-                      <option value="Data Scientist">Data scientist</option>
-                      <option value="Backend Developer">Backend Developer</option>
-                      <option value="Frontend Developer">Frontend Developer</option>
-                      <option value="Power BI">Power BI</option>
-                      <option value="AI ML">AI ML</option>
-                    </select>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="seeking" class="form-label">Seeking</label>
-                    <select class="form-select" id="seeking" multiple>
-                      <option value="Internship">Internship</option>
+              
+                 
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="seeking" class="form-label">Seeking</label>
+                      <select class="form-select" id="seeking" multiple>
+                        <option value="Internship">Internship</option>
                       <option value="Job">Job</option>
                       <option value="Remote">Remote</option>
                       <option value="Work from Home">Work from Home</option>
-                    
-                    </select>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gravatar" class="form-label">Gravatar URL</label>
+                      <input type="url" class="form-control" id="gravatar" required />
+                    </div>
+                   
+                    <div class="mb-3">
+                      <label for="githubURL" class="form-label">GitHub URL</label>
+                      <input type="url" class="form-control" id="githubURL" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="linkedinURL" class="form-label">LinkedIn URL</label>
+                      <input type="url" class="form-control" id="linkedinURL" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="location" class="form-label">Location</label>
+                      <input type="text" class="form-control" id="location" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="twitterURL" class="form-label">Twitter URL</label>
+                      <input type="url" class="form-control" id="twitterURL" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="websiteURL" class="form-label">Website URL</label>
+                      <input type="url" class="form-control" id="websiteURL" required />
+                    </div>
+              
                   </div>
-
-                  
-
-                  <div class="mb-3">
-                    <label for="gravatar" class="form-label"
-                      >Gravatar URL</label
-                    >
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="gravatar"
-                      required
-                    />
+              
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary col-12">Submit</button>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="bio" class="form-label">Bio</label>
-                    <textarea
-                      class="form-control"
-                      id="bio"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="githubURL" class="form-label">GitHub URL</label>
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="githubURL"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="linkedinURL" class="form-label"
-                      >LinkedIn URL</label
-                    >
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="linkedinURL"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="location" class="form-label">Location</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="location"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="twitterURL" class="form-label"
-                      >Twitter URL</label
-                    >
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="twitterURL"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="websiteURL" class="form-label"
-                      >Website URL</label
-                    >
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="websiteURL"
-                      required
-                    />
-                  </div>
-
-                  <!-- Add other fields for registration -->
-
-                  <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
+              
             </div>
           </div>
         </div>
@@ -265,108 +196,4 @@
     </div>
   </body>
 </html>
-<script>
-  $(document).ready(function () {
-
-    $("#toggleForm").click(function () {
-      $("#registerFields").toggle();
-      $("#authForm").toggle();
-      var buttonText = $(this).text() === "Register" ? "Login" : "Register";
-      $(this).text(buttonText);
-      $("#authForm")[0].reset();
-    });
-
-    // Handle form submission
-    $("#authForm").submit(function (event) {
-      event.preventDefault();
-      let loginemail = $("#loginemail").val();
-      let loginpassword = $("#loginpassword").val();
-      console.log(loginemail, loginpassword);
-      let formdata = {
-        email: loginemail,
-        password: loginpassword,
-      };
-      loginUser(formdata);
-    });
-
-
-    $("#registerForm").submit(function (event) {
-      event.preventDefault();
-      var name = $("#name").val();
-      var email = $("#email").val();
-      var password = $("#password").val();
-      var techStack = $("#techStack").val();
-      var fieldOfInterest = $("#fieldOfInterest").val();
-      var seeking = $("#seeking").val();
-      var gravatar = $("#gravatar").val();
-      var bio = $("#bio").val();
-      var githubURL = $("#githubURL").val();
-      var linkedinURL = $("#linkedinURL").val();
-      var location = $("#location").val();
-      var twitterURL = $("#twitterURL").val();
-      var websiteURL = $("#websiteURL").val();
-      
-      formdata={
-        name,
-        email,
-        password,
-        techStack,
-        fieldOfInterest,
-        seeking,
-        gravatar,
-        bio,
-        githubURL,
-        linkedinURL,
-        location,
-        twitterURL,
-        websiteURL,
-      };
-
-      registerUser(formdata)
-
-    });
-
-
-   
-  // Function to register the user
-function registerUser(formData) {
-  console.log(formData);
-  $.ajax({
-    url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/register",
-    type: "POST",
-    data: JSON.stringify(formData), 
-    contentType: 'application/json',
-    success: function (response) {
-      console.log("Registration successful:", response);
-      localStorage.setItem('token', response.token);
-    },
-    error: function (error) {
-      console.log("Registration error:", error);
-    },
-  });
-}
-
-  // Function to login the user
-  function loginUser(formData) {
-    console.log(formData);
-    $.ajax({
-      url: "https://bytive-assignment-stretch-frn4.vercel.app/api/user/login",
-      type: "POST",
-      data: JSON.stringify(formData), 
-    contentType: 'application/json',
-      success: function (response) {
-        console.log( response.message);
-        alert(response.message)
-        if(response.message==="Login successful"){
-          window.location.href='../index.html';
-        }
-        localStorage.setItem('token', response.token);
-      },
-      error: function (error) {
-        console.error("Login error:", error);
-      },
-    });
-  }
-
-});
-</script>
+<script src="../src/signup-signin.js"></script>

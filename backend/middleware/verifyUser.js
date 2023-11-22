@@ -12,7 +12,7 @@ const verifyUserMiddleware = (req, res, next) => {
   // Verify the token
   jwt.verify(token, process.env.jwtkey, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: 'Unauthorized - Invalid token' });
+      return res.status(401).json({ message: 'Unauthorized - Invalid token provided' });
     }
 
     // Attach the decoded user ID to the request object

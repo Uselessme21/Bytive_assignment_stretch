@@ -19,16 +19,14 @@ AllRoutes.post('/user/register',registerUser);
 AllRoutes.post('/user/login',loginUser);
 // protected routes
 
-AllRoutes.use(verifyUserMiddleware)
+// working
+AllRoutes.put('/user/editprofile/:userId', verifyUserMiddleware, editUserProfile);
+// working
+AllRoutes.get('/user/userprofile/:userId', verifyUserMiddleware , UserAccount);
+// working
+AllRoutes.delete('/user/deleteprofile/:userId', verifyUserMiddleware , deleteUserAccount);
 
-// working
-AllRoutes.put('/user/editprofile/:userId', editUserProfile);
-// working
-AllRoutes.get('/user/userprofile/:userId' , UserAccount);
-// working
-AllRoutes.delete('/user/deleteprofile/:userId' , deleteUserAccount);
-
-AllRoutes.get('/user/logout' , logoutUser);
+AllRoutes.get('/user/logout' , verifyUserMiddleware , logoutUser);
 
 
 module.exports=AllRoutes
