@@ -16,12 +16,10 @@ const swaggerOptions = require('./swagger/swaggerOptions');
 
 // Swagger Documentation
 const specs = swaggerJsdoc(swaggerOptions);
-const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
-
 // and pass it down to your app.use where you have swagger api-docs
 
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.get('/', (req, res) => {
   res.send('working');
