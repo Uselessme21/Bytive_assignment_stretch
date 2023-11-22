@@ -22,7 +22,7 @@ const jwt = require("jsonwebtoken");
  *         description: User registered successfully
  *         content:
  *           application/json:
- *             example: {"message": "User registered successfully", "user": {"name": "John Doe", "email": "john@example.com"}, "token": "your-jwt-token"}
+ *             example: {"message": "User registered successfully", "profile": "_id", "token": "your-jwt-token"}
  *       400:
  *         description: Bad Request
  *         content:
@@ -93,7 +93,7 @@ const registerUser = async (req, res) => {
 
     res
       .status(201)
-      .json({ message: "User registered successfully", token });
+      .json({ message: "User registered successfully", token, profile:newUser._id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -120,7 +120,7 @@ const registerUser = async (req, res) => {
  *         description: Login successful
  *         content:
  *           application/json:
- *             example: {"message": "Login successful", "user": {"name": "John Doe", "email": "john@example.com"}, "token": "your-jwt-token"}
+ *             example: {"message": "Login successful", "profile": "_id", "token": "your-jwt-token"}
  *       401:
  *         description: Unauthorized
  *         content:
@@ -153,7 +153,7 @@ const loginUser = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ message: "Login successful", token , profile:user._id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
