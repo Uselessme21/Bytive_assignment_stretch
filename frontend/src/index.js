@@ -9,6 +9,7 @@ if (loggedInId) {
 logoutbtn.addEventListener("click", () => {
     if (logoutbtn.textContent === "Logout") {
       localStorage.removeItem("token");
+      localStorage.removeItem('loggedInId')
       swal("Message!", "Logout successfully", "success");
       logoutbtn.textContent = "Login";
     } else {
